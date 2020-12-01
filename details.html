@@ -1,0 +1,49 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Polyswarm Report</h4>
+            <p class="category">Detailed Results</p>
+        </div>
+        <div class="content">
+          <div>
+            <label>Score</label>
+            {% if 'total' in results %}
+                {% if results['positives'] > 9 %}
+                    <h2 style="margin: 0 0 15px; 0"><span class="label label-danger">{{results['total']}}</span></h2>
+                {% elif results['positives'] > 0 %}
+                    <h2 style="margin: 0 0 15px; 0"><span class="label label-warning">{{results['total']}}</span></h2>
+                {% else %}
+                    <h2 style="margin: 0 0 15px; 0"><span class="label label-success">{{results['total']}}</span></h2>
+                {% endif %}
+            {% endif %}
+            <label>Poly Score</label>
+            <div class="labeled_content">
+                {{results['PolyScore']}}
+            </div>
+            <label>Permalink</label>
+            <div class="labeled_content">
+                <a href={{ results['permalink'] }} target=_blank>{{ results['permalink'] }}</a>
+            </div>
+            {% if results['positives'] > 0 %}
+                <label>Detections</label>
+                <table class='table table-bordered'>
+                    <thead>
+                        <tr>
+                            <td>Engine</td>
+                            <td>Veredict</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for engine in results['scans'] %}
+                            <tr>
+                                <td>{{engine['av']}}</td>
+                                <td>{{engine['veredict']}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+          </div>
+        </div>
+    </div>
+</div>
