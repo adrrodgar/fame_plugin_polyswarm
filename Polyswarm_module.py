@@ -38,7 +38,7 @@ class Polyswarm_module(ProcessingModule):
 
         if file_type == 'url' or file_type == 'msg' or file_type == 'eml':
 	        pass
-	    else:
+	else:
             positives = 0
             total = 0
             sha256 = None
